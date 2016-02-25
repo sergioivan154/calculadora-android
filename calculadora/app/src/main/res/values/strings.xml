@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">calculadora</string>
+    <string name="action_settings">Settings</string>
+    <string name="ButtonDigitOne_Text">1</string>
+    <string name="ButtonDigitTwo_Text">2</string>
+    <string name="ButtonDigitThree_Text">3</string>
+    <string name="ButtonDigitFour_Text">4</string>
+    <string name="ButtonDigitFive_Text">5</string>
+    <string name="ButtonDigitSix_Text">6</string>
+    <string name="ButtonDigitSeven_Text">7</string>
+    <string name="ButtonDigitEight_Text">8</string>
+    <string name="ButtonDigitNine_Text">9</string>
+    <string name="ButtonDigitZero_Text">0</string>
+    <string name="ButtonDigitDoubleZero_Text">00</string>
+    <string name="ButtonDigitDot_Text">.</string>
+
+
+    <string name="ButtonOperatorSum_Text">+</string>
+    <string name="ButtonOperatorSub_Text">-</string>
+    <string name="ButtonOperatorDiv_Text">/</string>
+    <string name="ButtonOperatorC_Text">C</string>
+    <string name="ButtonOperatorTimes_Text">*</string>
+    <string name="ButtonOperatorPow_Text">^2</string>
+    <string name="ButtonOperatorSqrt_Text">√</string>
+    <string name="ButtonOperatorIqualTo_Text">=</string>
+
+
+</resources>
