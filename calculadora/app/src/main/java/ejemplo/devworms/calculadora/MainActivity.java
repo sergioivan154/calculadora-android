@@ -55,14 +55,17 @@ public class MainActivity extends AppCompatActivity{
     public void escribirOperador(View view) {
 
         String expresion = cajaTexto.getText().toString(); // se saca el texto escrito ahsta el momento
-        String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
-        String operador = ((Button)view).getText().toString();
 
-        if(this.isNumeric(ultimoCaracter)){ // si el ultimo caracter es un numero
-            cajaTexto.setText(expresion+operador); // es posible concatenareste caracter con un operador
-        }
-        else{
-            ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
+        if (!(expresion.isEmpty())) {
+
+            String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
+            String operador = ((Button) view).getText().toString();
+
+            if (this.isNumeric(ultimoCaracter)) { // si el ultimo caracter es un numero
+                cajaTexto.setText(expresion + operador); // es posible concatenar este caracter con un operador
+            } else {
+                ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
+            }
         }
     }
 
@@ -80,11 +83,12 @@ public class MainActivity extends AppCompatActivity{
      * @param cadena
      * @return
      */
-    private static boolean isNumeric(String cadena){
+    private boolean isNumeric(String cadena){
         try {
             Integer.parseInt(cadena);
             return true;
         } catch (NumberFormatException nfe){
+            System.err.println(nfe.getMessage());
             return false;
         }
     }
