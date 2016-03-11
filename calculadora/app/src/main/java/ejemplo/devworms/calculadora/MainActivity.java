@@ -8,69 +8,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     private TextView cajaTexto;
-    private ArrayList<Button>buttonsNumbers; //Arreglo de botones del 0 al 9
-    private ArrayList<Button>buttonsOperators; //Arreglo de botones de operaciones básicas
-
-    private Button btnPotencia;
-    private Button btnRaiz;
-    private Button btnIgual;
-    private Button btnC;;
-
-    private void initComponents()
-    {
+    private ArrayList<Integer>numeros;
 
 
-        cajaTexto =(TextView) findViewById(R.id.editTextPantalla);
-
-        btnPotencia = (Button) findViewById(R.id.buttonPow);
-        btnRaiz = (Button) findViewById(R.id.buttonSqrt);
-        btnIgual  = (Button) findViewById(R.id.buttonIqualTo);
-        btnC = (Button) findViewById(R.id.buttonC);
-
-        buttonsNumbers = new ArrayList<>();
-        buttonsOperators = new ArrayList<>();
-
-        //Numeros - Variante uno, listeners
-        buttonsNumbers.add((Button) findViewById(R.id.buttonZero)) ;
-        buttonsNumbers.add((Button) findViewById(R.id.buttonOne)) ;
-        buttonsNumbers.add((Button) findViewById(R.id.buttonTwo));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonThree));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonFour));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonFive));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonSix));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonSeven));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonEight));
-        buttonsNumbers.add((Button) findViewById(R.id.buttonNine));
-
-        //Operadores
-        buttonsOperators.add((Button) findViewById(R.id.buttonSum));
-        buttonsOperators.add((Button) findViewById(R.id.buttonSub));
-        buttonsOperators.add((Button) findViewById(R.id.buttonTimes));
-        buttonsOperators.add((Button) findViewById(R.id.buttonDiv));
-
-
-        //Acciones para numeros
-        for (Button boton:buttonsNumbers) {
-            boton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String expresion = cajaTexto.getText().toString();
-                    expresion = (expresion.equals("0") ? ((Button)view).getText().toString(): expresion + ((Button)view).getText().toString());
-                    cajaTexto.setText(expresion);
-                }
-            });
-        }
-
-        //Acciones para operadores con el metodo 2
-        for (Button boton:buttonsOperators) {
-            boton.setOnClickListener(this);
-        }
-
-
-
+    private void initComponents(){
+        cajaTexto = (TextView)findViewById(R.id.editTextPantalla);
     }
 
     @Override
@@ -81,10 +26,67 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(View view) {
+
+    /**
+     * Este metodo es para la funcion C
+     * @param view
+     * @return
+     */
+    public void escribirC(View view) {
+        cajaTexto.setText("");
+    }
+
+    /**
+     * Este metodo es para numeros y sirve asignarle la misma accion a cada boton variando su comportamiento por lo que escriben en pantalla
+     * @param view
+     * @return
+     */
+    public void escribirNumero(View view) {
         String expresion = cajaTexto.getText().toString();
         expresion = (expresion.equals("0") ? ((Button)view).getText().toString(): expresion + ((Button)view).getText().toString());
         cajaTexto.setText(expresion);
     }
+
+    /**
+     * Este metodo es para operadores y sirve asignarle la misma accion a cada boton variando su comportamiento por lo que escriben en pantalla
+     * @param view
+     * @return
+     */
+    public void escribirOperador(View view) {
+
+        String expresion = cajaTexto.getText().toString(); // se saca el texto escrito ahsta el momento
+        String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
+        String operador = ((Button)view).getText().toString();
+
+        if(this.isNumeric(ultimoCaracter)){ // si el ultimo caracter es un numero
+            cajaTexto.setText(expresion+operador); // es posible concatenareste caracter con un operador
+        }
+        else{
+            ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
+        }
+    }
+
+    /**
+     * Este metodo es para la funcion =
+     * @param view
+     * @return
+     */
+    public void caluclar(View view) {
+
+    }
+
+    /**
+     * Este metodo sirve para identificar si una cadena es un numero o no
+     * @param cadena
+     * @return
+     */
+    private static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+
 }

@@ -22,6 +22,12 @@
     <string name="ButtonOperatorTimes_Text">*</string>
     <string name="ButtonOperatorPow_Text">^2</string>
     <string name="ButtonOperatorSqrt_Text">√</string>
+    <string name="ButtonOperatorSin_Text">Sen</string>
+    <string name="ButtonOperatorCos_Text">Cos</string>
+    <string name="ButtonOperatorTan_Text">Tan</string>
+    <string name="ButtonOperatorCtg_Text">Ctg</string>
+    <string name="ButtonOperatorSec_Text">Sec</string>
+    <string name="ButtonOperatorCsc_Text">Csc</string>
     <string name="ButtonOperatorIqualTo_Text">=</string>
 
 

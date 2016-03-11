@@ -70,6 +70,24 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorSin_Text"
+            android:id="@+id/ButtonOperatorSin"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorCtg_Text"
+            android:id="@+id/ButtonOperatorCtg"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -120,6 +138,24 @@
             android:layout_height="fill_parent"
             android:text="@string/ButtonOperatorPow_Text"
             android:id="@+id/buttonPow"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorCos_Text"
+            android:id="@+id/ButtonOperatorCos"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorSec_Text"
+            android:id="@+id/ButtonOperatorSec"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="24dp" />
@@ -177,6 +213,24 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorTan_Text"
+            android:id="@+id/ButtonOperatorTan"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:text="@string/ButtonOperatorCsc_Text"
+            android:id="@+id/ButtonOperatorCsc"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="24dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -228,7 +282,7 @@
             android:layout_height="fill_parent"
             android:text="@string/ButtonOperatorIqualTo_Text"
             android:id="@+id/buttonIqualTo"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:textStyle="bold"
             android:textSize="24dp" />
 
