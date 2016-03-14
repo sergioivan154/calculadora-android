@@ -1,4 +1,5 @@
 package ejemplo.devworms.calculadora;
+import java.text.DecimalFormat;
 import java.util.Stack;
 import android.util.Log;
 
@@ -85,7 +86,9 @@ public class Utils {
             Log.i("Expresion: ",  expr);
             Log.i("Resultado: ", P.peek());
 
-            return P.peek();
+            DecimalFormat myFormat = new DecimalFormat("0.000");
+            String myDoubleString = myFormat.format(P.peek());
+            return myDoubleString;
 
         }catch(Exception ex){
             Log.e("Error", ex.getMessage());
@@ -120,9 +123,9 @@ public class Utils {
         return prf;
     }
 
-    private static int evaluar(String op, String n2, String n1) {
-        int num1 = Integer.parseInt(n1);
-        int num2 = Integer.parseInt(n2);
+    private static double evaluar(String op, String n2, String n1) {
+        double num1 = Double.parseDouble(n1);
+        double num2 = Double.parseDouble(n2);
         if (op.equals("+")) return (num1 + num2);
         if (op.equals("-")) return (num1 - num2);
         if (op.equals("*")) return (num1 * num2);
