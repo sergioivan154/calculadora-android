@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity{
      * @return
      */
     public void caluclar(View view) {
-         Utils.realizarCalculo(cajaTexto.getText().toString());
+         String resultado = Utils.realizarCalculo(cajaTexto.getText().toString());
+        cajaTexto.setText(resultado);
     }
 
     /**

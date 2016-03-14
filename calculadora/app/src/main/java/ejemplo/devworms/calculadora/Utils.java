@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public class Utils {
 
-    public static void realizarCalculo(String textoEnPantalla){
+    public static String realizarCalculo(String textoEnPantalla){
         //Depurar la expresion algebraica
 
         String expr = depurar(textoEnPantalla);
@@ -57,9 +57,25 @@ public class Utils {
             Log.i("infija","Expresion Infija: " + infix);
             Log.i("infija", "Expresion Postfija: " + postfix);
 
-        }catch(Exception ex){
-            Log.e("Error en la expresión algebraica", ex.getMessage());
+            //Algoritmo de Evaluación Postfija
+            String operadores = "+-*/%";
+            while (!E.isEmpty()) {
+                if (operadores.contains("" + E.peek())) {
+                    P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+                }else {
+                    P.push(E.pop());
+                }
+            }
 
+            //Mostrar resultados:
+            System.out.println("Expresion: " + expr);
+            System.out.println("Resultado: " + P.peek());
+
+            return P.peek();
+
+        }catch(Exception ex){
+            Log.e("Error", ex.getMessage());
+            return ex.getMessage();
         }
     }
 
@@ -89,4 +105,16 @@ public class Utils {
         if (op.equals("(")) prf = 1;
         return prf;
     }
+
+    private static int evaluar(String op, String n2, String n1) {
+        int num1 = Integer.parseInt(n1);
+        int num2 = Integer.parseInt(n2);
+        if (op.equals("+")) return (num1 + num2);
+        if (op.equals("-")) return (num1 - num2);
+        if (op.equals("*")) return (num1 * num2);
+        if (op.equals("/")) return (num1 / num2);
+        if (op.equals("%")) return (num1 % num2);
+        return 0;
+    }
+
 }
