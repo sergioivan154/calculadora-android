@@ -53,6 +53,20 @@ public class Utils {
             String infix = expr.replace(" ", "");
             String postfix = S.toString().replaceAll("[\\]\\[,]", "");
 
+
+            //Entrada (Expresión en Postfija)
+            expr = postfix; // equivale a 2*(23+6)-1
+            String[] post = expr.split(" ");
+
+            //Declaración de las pilas
+            E = new Stack < String > (); //Pila entrada
+            P = new Stack < String > (); //Pila de operandos
+
+            //Añadir post (array) a la Pila de entrada (E)
+            for (int i = post.length - 1; i >= 0; i--) {
+                E.push(post[i]);
+            }
+
             //Mostrar resultados:
             Log.i("infija","Expresion Infija: " + infix);
             Log.i("infija", "Expresion Postfija: " + postfix);
@@ -68,8 +82,8 @@ public class Utils {
             }
 
             //Mostrar resultados:
-            System.out.println("Expresion: " + expr);
-            System.out.println("Resultado: " + P.peek());
+            Log.i("Expresion: ",  expr);
+            Log.i("Resultado: ", P.peek());
 
             return P.peek();
 
