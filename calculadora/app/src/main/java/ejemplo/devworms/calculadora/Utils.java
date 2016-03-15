@@ -33,6 +33,7 @@ public class Utils {
                         break;
                     case 3:
                     case 4:
+                    case 5:
                         while(pref(P.peek()) >= pref(E.peek())) {
                             S.push(P.pop());
                         }
@@ -75,20 +76,17 @@ public class Utils {
             //Algoritmo de Evaluación Postfija
             String operadores = "+-*/^√";
             while (!E.isEmpty()) {
-                if (operadores.contains("" + E.peek())) {
-                    P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+                String peek = E.peek();
+                if (operadores.contains("" + peek)) {
+                    P.push(evaluar(E.pop(), P.pop(),  (P.size()>0 ? P.pop():"0")) + "");
                 }else {
                     P.push(E.pop());
                 }
             }
 
+            String valor = P.peek();
             //Mostrar resultados:
-            Log.i("Expresion: ",  expr);
-            Log.i("Resultado: ", P.peek());
-
-            DecimalFormat myFormat = new DecimalFormat("0.000");
-            String myDoubleString = myFormat.format(P.peek());
-            return myDoubleString;
+            return valor;
 
         }catch(Exception ex){
             Log.e("Error", ex.getMessage());
@@ -130,7 +128,7 @@ public class Utils {
     //Jerarquia de los operadores
     private static int pref(String op) {
         int prf = 99;
-        if (op.equals("^") || op.equals("√")) prf = 4;
+        if (op.equals("^") || op.equals("√")) prf = 5;
         if (op.equals("*") || op.equals("/")) prf = 4;
         if (op.equals("+") || op.equals("-")) prf = 3;
         if (op.equals(")")) prf = 2;
@@ -146,7 +144,7 @@ public class Utils {
         if (op.equals("*")) return (num1 * num2);
         if (op.equals("/")) return (num1 / num2);
         if (op.equals("^")) return Math.pow(num1, num2);
-        if (op.equals("√")) return Math.sqrt(num1);
+        if (op.equals("√")) return Math.sqrt(num2);
         return 0;
     }
 
