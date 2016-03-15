@@ -73,7 +73,7 @@ public class Utils {
             Log.i("infija", "Expresion Postfija: " + postfix);
 
             //Algoritmo de Evaluación Postfija
-            String operadores = "+-*/%";
+            String operadores = "+-*/^√";
             while (!E.isEmpty()) {
                 if (operadores.contains("" + E.peek())) {
                     P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
@@ -115,7 +115,7 @@ public class Utils {
         }
 
         s = "(" + s + ")";
-        String simbols = "+-*/()";
+        String simbols = "+-*/()^√";
         String str = "";
 
         //Deja espacios entre operadores
@@ -130,7 +130,7 @@ public class Utils {
     //Jerarquia de los operadores
     private static int pref(String op) {
         int prf = 99;
-        if (op.equals("^")) prf = 5;
+        if (op.equals("^") || op.equals("√")) prf = 4;
         if (op.equals("*") || op.equals("/")) prf = 4;
         if (op.equals("+") || op.equals("-")) prf = 3;
         if (op.equals(")")) prf = 2;
@@ -145,7 +145,8 @@ public class Utils {
         if (op.equals("-")) return (num1 - num2);
         if (op.equals("*")) return (num1 * num2);
         if (op.equals("/")) return (num1 / num2);
-        if (op.equals("")) return Math.pow(num1, num2);
+        if (op.equals("^")) return Math.pow(num1, num2);
+        if (op.equals("√")) return Math.sqrt(num1);
         return 0;
     }
 
