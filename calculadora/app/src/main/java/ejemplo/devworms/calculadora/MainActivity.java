@@ -55,18 +55,44 @@ public class MainActivity extends AppCompatActivity{
     public void escribirOperador(View view) {
 
         String expresion = cajaTexto.getText().toString(); // se saca el texto escrito ahsta el momento
+        String operador = ((Button) view).getText().toString();
+        String parentesis = obtenerOperadoresInicialesValidos(operador);
 
-        if (!(expresion.isEmpty())) {
+        if (!expresion.isEmpty() || parentesis.equals("(")) {
 
-            String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
-            String operador = ((Button) view).getText().toString();
+            if (!expresion.isEmpty()){
+                String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
 
-            if (this.isNumeric(ultimoCaracter)) { // si el ultimo caracter es un numero
-                cajaTexto.setText(expresion + operador); // es posible concatenar este caracter con un operador
-            } else {
-                ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
+                if (this.isNumeric(ultimoCaracter)) { // si el ultimo caracter es un numero
+                    cajaTexto.setText(expresion + operador); // es posible concatenar este caracter con un operador
+                } else {
+                    ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
+
+                }
+            }else{
+                cajaTexto.setText(operador + parentesis);
             }
+
         }
+    }
+
+    public String obtenerOperadoresInicialesValidos(String operador){
+        String resultado = "";
+        String operadorTemp = operador.toLowerCase();
+        if (
+                operadorTemp.equals("√") ||
+                operadorTemp.equals("sen") ||
+                operadorTemp.equals("cos") ||
+                operadorTemp.equals("tan") ||
+                operadorTemp.equals("ctg") ||
+                operadorTemp.equals("sec") ||
+                operadorTemp.equals("csc"))
+        {
+            resultado = "(";
+        }
+
+        return resultado;
+
     }
 
     /**

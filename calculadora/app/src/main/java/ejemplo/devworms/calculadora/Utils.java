@@ -99,6 +99,21 @@ public class Utils {
     //Depurar expresión algebraica
     private static String depurar(String s) {
         s = s.replaceAll("\\s+", ""); //Elimina espacios en blanco
+
+        //Balanceo de parentesis
+        int parentesisIzq = s.length() - s.replace("(", "").length();
+        int parentesisDer = s.length() - s.replace(")", "").length();
+        if(parentesisIzq>parentesisDer) {
+            for (int i=0; i< (parentesisIzq-parentesisDer); i++){
+                s +=")";
+            }
+        }
+        else if(parentesisIzq<parentesisDer) {
+            for (int i=0; i< (parentesisDer-parentesisIzq); i++){
+                s ="("+s;
+            }
+        }
+
         s = "(" + s + ")";
         String simbols = "+-*/()";
         String str = "";
@@ -130,7 +145,7 @@ public class Utils {
         if (op.equals("-")) return (num1 - num2);
         if (op.equals("*")) return (num1 * num2);
         if (op.equals("/")) return (num1 / num2);
-        if (op.equals("%")) return (num1 % num2);
+        if (op.equals("")) return Math.pow(num1, num2);
         return 0;
     }
 
