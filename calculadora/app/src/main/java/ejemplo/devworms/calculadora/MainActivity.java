@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity{
                         cajaTexto.setText(textoEnPantalla);
                     }
                     else {
-                        if(!simbols.contains(textoEnPantalla) && textoEnPantalla.contains(".")) {
+                        if(!simbols.contains(textoEnPantalla) && !textoEnPantalla.contains(".")) {
                             cajaTexto.setText(textoEnPantalla + operadorButton);
                             banderaPunto = false;
                         }
