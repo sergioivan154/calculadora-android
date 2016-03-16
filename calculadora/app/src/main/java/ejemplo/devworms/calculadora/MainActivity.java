@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 else{
 
-                    if (banderaPunto == false || "()".contains(ultimoCaracter) || (banderaPunto == true && !buscarCaracterEspecial(simbols+"()",textoEnPantalla))){
+                    if (banderaPunto == false || "()".contains(ultimoCaracter) || (banderaPunto == true && textoEnPantalla.contains(".") && !buscarCaracterEspecial(simbols+"()",textoEnPantalla)  )){
                         cajaTexto.setText(textoEnPantalla);
                     }
                     else {
