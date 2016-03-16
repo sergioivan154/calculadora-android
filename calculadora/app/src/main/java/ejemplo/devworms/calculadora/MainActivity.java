@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
      */
     public void escribirC(View view) {
         cajaTexto.setText("0");
+        banderaPunto = true;
     }
 
     /**
