@@ -73,23 +73,24 @@ public class MainActivity extends AppCompatActivity{
 
         String ultimoCaracter = textoEnPantalla.substring(textoEnPantalla.length() - 1);
 
-        String simbols = "+-*/^.";
+        String simbols = "+-*/^.√";
 
         switch (operadorButton.toLowerCase()){
 
             case ".":
-                simbols = "+-*/^";
+                simbols = "+-*/^(";
                 if(simbols.contains(ultimoCaracter)) {
                     cajaTexto.setText(textoEnPantalla+"0.");
                     banderaPunto = false;
                 }
                 else{
 
-                    if (banderaPunto == false || "()".contains(ultimoCaracter)){
+                    if (banderaPunto == false || "()".contains(ultimoCaracter) || (banderaPunto == true && !buscarCaracterEspecial(simbols+"()",textoEnPantalla))){
                         cajaTexto.setText(textoEnPantalla);
                     }
                     else {
-                        if(simbols.contains(textoEnPantalla)) {
+
+                        if(banderaPunto) {
                             cajaTexto.setText(textoEnPantalla + operadorButton);
                             banderaPunto = false;
                         }else{
@@ -112,7 +113,14 @@ public class MainActivity extends AppCompatActivity{
 
                         cajaTexto.setText(textoEnPantalla + "0*" + operadorButton);
                     }else {
-                        cajaTexto.setText(textoEnPantalla + "*" + operadorButton);
+                        if(simbols.contains(ultimoCaracter)) {
+
+                            cajaTexto.setText(textoEnPantalla + operadorButton);
+                        }
+                        else{
+                            cajaTexto.setText(textoEnPantalla + "*" + operadorButton);
+                        }
+
                     }
                 else
                     cajaTexto.setText(operadorButton);
@@ -135,10 +143,18 @@ public class MainActivity extends AppCompatActivity{
                 if(!simbols.contains(ultimoCaracter)) { // si al final del texto escrito no existe ninguno de los simbolos de operacion se puede hacer el calculo de la razin cuadrada
                     if(cajaTexto.getText().toString().contains("Error"))
                         cajaTexto.setText("0");
-                    else
-                        cajaTexto.setText(operadorButton+"("+operar(cajaTexto.getText().toString())+")");
+                    else {
+                        
+                        cajaTexto.setText(operadorButton + "(" + operar(cajaTexto.getText().toString()) + ")");
+
+                    }
 
                     banderaPunto = true;
+
+
+                }else{
+                    banderaPunto = true;
+                    cajaTexto.setText(textoEnPantalla+operadorButton+"(");
                 }
                 break;
             default:
@@ -158,6 +174,20 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
 
+    }
+
+    private boolean buscarCaracterEspecial(String caracteres, String texto){
+
+        boolean resultado = false;
+        for( int i = 0; i<caracteres.length();i++){
+            Character c = caracteres.charAt(i);
+            if (texto.contains(c.toString())) {
+                resultado = true;
+                break;
+            }
+        }
+
+        return resultado;
     }
 
     /**
