@@ -22,7 +22,10 @@
             android:textSize="54dp"
             android:textStyle="bold"
             android:gravity="bottom|right"
-            android:text="0" />
+            android:text="0"
+            android:lines="4"
+            android:maxLines="4"
+            android:textIsSelectable="true" />
     </LinearLayout>
 
     <LinearLayout

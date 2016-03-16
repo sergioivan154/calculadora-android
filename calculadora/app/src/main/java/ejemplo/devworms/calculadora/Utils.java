@@ -86,7 +86,7 @@ public class Utils {
 
             String valor = P.peek();
 
-            int numeroDecimales = valor.indexOf(".");
+           /* int numeroDecimales = valor.indexOf(".");
             String mascara = "###,###";
             numeroDecimales = valor.length() - numeroDecimales;
             if(numeroDecimales>0){
@@ -99,9 +99,9 @@ public class Utils {
             }
 
             DecimalFormat format=new DecimalFormat(mascara);
-
+*/
             //Mostrar resultados:
-            return valor.equals("Infinity") || valor.equals("NaN") ? "Error": format.format(Double.parseDouble(valor));
+            return valor.equals("Infinity") || valor.equals("NaN") ? "Error": valor;
 
         }catch(Exception ex){
             return ex.getMessage();

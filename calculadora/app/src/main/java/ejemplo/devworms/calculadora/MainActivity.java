@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity{
     private void validarOperadores(String textoEnPantalla, String operadorButton){
 
 
+        if (!textoEnPantalla.contains("."))
+            banderaPunto = true;
         if(textoEnPantalla.toLowerCase().equals("error")){
             cajaTexto.setText("0");
             return;
@@ -95,11 +97,25 @@ public class MainActivity extends AppCompatActivity{
 
                 break;
             case "(":
-                cajaTexto.setText(textoEnPantalla+"*"+operadorButton);
+                banderaPunto = true;
+                if (!textoEnPantalla.equals("0"))
+
+                    if(ultimoCaracter.equals(".")) {
+
+                        cajaTexto.setText(textoEnPantalla + "0*" + operadorButton);
+                    }else {
+                        cajaTexto.setText(textoEnPantalla + "*" + operadorButton);
+                    }
+                else
+                    cajaTexto.setText(operadorButton);
                 break;
             case ")":
                 if (ultimoCaracter.equals("("))
-                cajaTexto.setText(textoEnPantalla+"0"+operadorButton);
+                    cajaTexto.setText(textoEnPantalla+"0"+operadorButton);
+                else {
+                    cajaTexto.setText(textoEnPantalla + operadorButton);
+
+                }
                 break;
             case "√":
             case "sen":
@@ -157,7 +173,9 @@ public class MainActivity extends AppCompatActivity{
             resultado = textoEnPantalla;
         }
 
-        return resultado;
+
+        return resultado!= null && !resultado.isEmpty() ? resultado: "0";
+
 
     }
 
