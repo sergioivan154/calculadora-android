@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_weight="1"
@@ -13,9 +19,10 @@
             android:layout_height="fill_parent"
             android:id="@+id/editTextPantalla"
             android:layout_weight="1"
-            android:textSize="24dp"
+            android:textSize="54dp"
             android:textStyle="bold"
-            android:layout_gravity="bottom|left" />
+            android:gravity="bottom|right"
+            android:text="0" />
     </LinearLayout>
 
     <LinearLayout
@@ -32,7 +39,8 @@
             android:id="@+id/buttonSeven"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -41,7 +49,8 @@
             android:text="@string/ButtonDigitEight_Text"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -51,7 +60,8 @@
             android:id="@+id/buttonNine"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -60,7 +70,8 @@
             android:id="@+id/buttonDiv"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -69,8 +80,8 @@
             android:id="@+id/buttonC"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
-
+            android:textSize="24dp"
+            android:onClick="escribirC" />
         <Button
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -78,7 +89,8 @@
             android:id="@+id/ButtonOperatorSin"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -87,7 +99,8 @@
             android:id="@+id/ButtonOperatorCtg"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -103,7 +116,8 @@
             android:id="@+id/buttonFour"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -112,7 +126,8 @@
             android:id="@+id/buttonFive"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -122,7 +137,8 @@
             android:id="@+id/buttonSix"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -131,7 +147,8 @@
             android:id="@+id/buttonTimes"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -140,8 +157,8 @@
             android:id="@+id/buttonPow"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
-
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
         <Button
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -149,7 +166,8 @@
             android:id="@+id/ButtonOperatorCos"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -158,7 +176,8 @@
             android:id="@+id/ButtonOperatorSec"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -175,7 +194,8 @@
             android:id="@+id/buttonOne"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -184,7 +204,8 @@
             android:id="@+id/buttonTwo"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -194,7 +215,8 @@
             android:id="@+id/buttonThree"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -203,7 +225,8 @@
             android:id="@+id/buttonSub"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -212,7 +235,8 @@
             android:id="@+id/buttonSqrt"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -221,7 +245,8 @@
             android:id="@+id/ButtonOperatorTan"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -230,7 +255,10 @@
             android:id="@+id/ButtonOperatorCsc"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:nestedScrollingEnabled="false"
+            android:onClick="escribirOperador" />
+
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -246,7 +274,8 @@
             android:id="@+id/buttonZero"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             android:layout_width="0dp"
@@ -256,7 +285,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="24dp"
-            android:onClick="." />
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -265,7 +294,8 @@
             android:id="@+id/buttonDoubleZero"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirNumero" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -275,8 +305,8 @@
             android:id="@+id/buttonSum"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
-
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="0dp"
@@ -285,7 +315,8 @@
             android:id="@+id/buttonParentesisDer"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -295,7 +326,8 @@
             android:id="@+id/buttonParentesisIzq"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="escribirOperador" />
 
         <Button
             android:layout_width="0dp"
@@ -304,8 +336,11 @@
             android:id="@+id/buttonIqualTo"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:onClick="calcular" />
 
 
     </LinearLayout>
+
 </LinearLayout>
+

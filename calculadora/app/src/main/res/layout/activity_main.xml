@@ -21,7 +21,8 @@
             android:layout_weight="1"
             android:textSize="54dp"
             android:textStyle="bold"
-            android:gravity="bottom|right" />
+            android:gravity="bottom|right"
+            android:text="0" />
     </LinearLayout>
 
     <LinearLayout
@@ -255,7 +256,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="24dp"
-            android:onClick="caluclar" />
+            android:onClick="calcular" />
 
 
     </LinearLayout>

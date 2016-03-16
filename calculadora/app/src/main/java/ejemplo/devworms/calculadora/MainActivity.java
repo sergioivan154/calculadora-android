@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity{
 
     private TextView cajaTexto;
     private ArrayList<Integer>numeros;
-
+    private boolean banderaPunto = true;
 
     private void initComponents(){
         cajaTexto = (TextView)findViewById(R.id.editTextPantalla);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity{
      * @return
      */
     public void escribirC(View view) {
-        cajaTexto.setText("");
+        cajaTexto.setText("0");
     }
 
     /**
@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity{
      */
     public void escribirNumero(View view) {
         String expresion = cajaTexto.getText().toString();
-        expresion = (expresion.equals("0") ? ((Button)view).getText().toString(): expresion + ((Button)view).getText().toString());
+        String textoBoton = ((Button)view).getText().toString();
+        if (expresion.substring(expresion.length()-1).equals(")")){
+            textoBoton = "*" + textoBoton;
+        }
+        expresion = (expresion.equals("0") || expresion.equals("Error") ? textoBoton : expresion + textoBoton);
         cajaTexto.setText(expresion);
     }
 
@@ -54,44 +58,81 @@ public class MainActivity extends AppCompatActivity{
      */
     public void escribirOperador(View view) {
 
-        String expresion = cajaTexto.getText().toString(); // se saca el texto escrito ahsta el momento
-        String operador = ((Button) view).getText().toString();
-        String parentesis = obtenerOperadoresInicialesValidos(operador);
-
-        if (!expresion.isEmpty() || parentesis.equals("(")) {
-
-            if (!expresion.isEmpty()){
-                String ultimoCaracter = expresion.substring(expresion.length() - 1); //se obtiene el ultimo caracter con el proposito de evitar que se escriban dos operadores juntos
-
-                if (this.isNumeric(ultimoCaracter)) { // si el ultimo caracter es un numero
-                    cajaTexto.setText(expresion + operador); // es posible concatenar este caracter con un operador
-                } else {
-                    ultimoCaracter = operador; // se reemplaza el operador anterior por el actual, ejemplo: si hay un + y el operador actual es un -, entonces el + se es sobre escrito por un menos
-
-                }
-            }else{
-                cajaTexto.setText(operador + parentesis);
-            }
-
-        }
+        this.validarOperadores(cajaTexto.getText().toString(), ((Button) view).getText().toString());
     }
 
-    public String obtenerOperadoresInicialesValidos(String operador){
-        String resultado = "";
-        String operadorTemp = operador.toLowerCase();
-        if (
-                operadorTemp.equals("√") ||
-                operadorTemp.equals("sen") ||
-                operadorTemp.equals("cos") ||
-                operadorTemp.equals("tan") ||
-                operadorTemp.equals("ctg") ||
-                operadorTemp.equals("sec") ||
-                operadorTemp.equals("csc"))
-        {
-            resultado = "(";
+    private void validarOperadores(String textoEnPantalla, String operadorButton){
+
+
+        if(textoEnPantalla.toLowerCase().equals("error")){
+            cajaTexto.setText("0");
+            return;
         }
 
-        return resultado;
+        String ultimoCaracter = textoEnPantalla.substring(textoEnPantalla.length() - 1);
+
+        String simbols = "+-*/^.";
+
+        switch (operadorButton.toLowerCase()){
+
+            case ".":
+                simbols = "+-*/^";
+                if(simbols.contains(ultimoCaracter)) {
+                    cajaTexto.setText(textoEnPantalla+"0.");
+                    banderaPunto = false;
+                }
+                else{
+
+                    if (banderaPunto == false || "()".contains(ultimoCaracter)){
+                        cajaTexto.setText(textoEnPantalla);
+                    }
+                    else {
+                        cajaTexto.setText(textoEnPantalla + operadorButton);
+                        banderaPunto = false;
+                    }
+
+                }
+
+                break;
+            case "(":
+                cajaTexto.setText(textoEnPantalla+"*"+operadorButton);
+                break;
+            case ")":
+                if (ultimoCaracter.equals("("))
+                cajaTexto.setText(textoEnPantalla+"0"+operadorButton);
+                break;
+            case "√":
+            case "sen":
+            case "cos":
+            case "tan":
+            case "sec":
+            case "csc":
+            case "ctg":
+                if(!simbols.contains(ultimoCaracter)) { // si al final del texto escrito no existe ninguno de los simbolos de operacion se puede hacer el calculo de la razin cuadrada
+                    if(cajaTexto.getText().toString().contains("Error"))
+                        cajaTexto.setText("0");
+                    else
+                        cajaTexto.setText(operadorButton+"("+operar(cajaTexto.getText().toString())+")");
+
+                    banderaPunto = true;
+                }
+                break;
+            default:
+
+
+                banderaPunto = true;
+                if(!simbols.contains(ultimoCaracter)) {
+
+                    cajaTexto.setText(textoEnPantalla+operadorButton);
+                }
+                else{
+                    if (ultimoCaracter.equals("^"))
+                        ultimoCaracter = "\\^";
+                    String resultado = textoEnPantalla.replaceAll("["+ultimoCaracter+"]$", operadorButton);
+                    cajaTexto.setText(resultado);
+                }
+                break;
+        }
 
     }
 
@@ -100,24 +141,26 @@ public class MainActivity extends AppCompatActivity{
      * @param view
      * @return
      */
-    public void caluclar(View view) {
-         String resultado = Utils.realizarCalculo(cajaTexto.getText().toString());
-        cajaTexto.setText(resultado);
+    public void calcular(View view) {
+
+        cajaTexto.setText(operar(cajaTexto.getText().toString()));
+
     }
 
-    /**
-     * Este metodo sirve para identificar si una cadena es un numero o no
-     * @param cadena
-     * @return
-     */
-    private boolean isNumeric(String cadena){
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe){
-            System.err.println(nfe.getMessage());
-            return false;
+    public String operar(String textoEnPantalla){
+        String simbols = "+-*/^";
+        String resultado = "";
+        String ultimoCaracter = cajaTexto.getText().toString().substring(cajaTexto.getText().toString().length()-1);
+        if (!simbols.contains(ultimoCaracter)) {
+            resultado = Utils.realizarCalculo(cajaTexto.getText().toString());
+        }else{
+            resultado = textoEnPantalla;
         }
+
+        return resultado;
+
     }
+
+
 
 }

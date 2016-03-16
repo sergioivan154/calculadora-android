@@ -74,9 +74,9 @@ public class Utils {
             Log.i("infija", "Expresion Postfija: " + postfix);
 
             //Algoritmo de Evaluación Postfija
-            String operadores = "+-*/^√";
+            String operadores = "+-*/^√sencostanctgseccsc";
             while (!E.isEmpty()) {
-                String peek = E.peek();
+                String peek = E.peek().toLowerCase();
                 if (operadores.contains("" + peek)) {
                     P.push(evaluar(E.pop(), P.pop(),  (P.size()>0 ? P.pop():"0")) + "");
                 }else {
@@ -85,11 +85,25 @@ public class Utils {
             }
 
             String valor = P.peek();
+
+            int numeroDecimales = valor.indexOf(".");
+            String mascara = "###,###";
+            numeroDecimales = valor.length() - numeroDecimales;
+            if(numeroDecimales>0){
+                mascara += ".";
+                if(numeroDecimales > 6)
+                    numeroDecimales = 6;
+                for (int i = 0; i<(numeroDecimales) ; i++) {
+                    mascara += "#";
+                }
+            }
+
+            DecimalFormat format=new DecimalFormat(mascara);
+
             //Mostrar resultados:
-            return valor;
+            return valor.equals("Infinity") || valor.equals("NaN") ? "Error": format.format(Double.parseDouble(valor));
 
         }catch(Exception ex){
-            Log.e("Error", ex.getMessage());
             return ex.getMessage();
         }
     }
@@ -128,7 +142,10 @@ public class Utils {
     //Jerarquia de los operadores
     private static int pref(String op) {
         int prf = 99;
-        if (op.equals("^") || op.equals("√")) prf = 5;
+        if (op.equals("^") || op.equals("√")
+        || op.toLowerCase().equals("sen")|| op.toLowerCase().equals("cos")
+        || op.toLowerCase().equals("tan")|| op.toLowerCase().equals("ctg")
+        || op.toLowerCase().equals("sec")|| op.toLowerCase().equals("csc"))prf = 5;
         if (op.equals("*") || op.equals("/")) prf = 4;
         if (op.equals("+") || op.equals("-")) prf = 3;
         if (op.equals(")")) prf = 2;
@@ -142,9 +159,16 @@ public class Utils {
         if (op.equals("+")) return (num1 + num2);
         if (op.equals("-")) return (num1 - num2);
         if (op.equals("*")) return (num1 * num2);
-        if (op.equals("/")) return (num1 / num2);
+        if (op.equals("/"))  return (num1 / num2);
         if (op.equals("^")) return Math.pow(num1, num2);
         if (op.equals("√")) return Math.sqrt(num2);
+        if (op.toLowerCase().equals("sen")) return Math.sin(num2);
+        if (op.toLowerCase().equals("cos")) return Math.cos(num2);
+        if (op.toLowerCase().equals("tan")) return Math.tan(num2);
+        if (op.toLowerCase().equals("ctg")) return 1.0/Math.tan(num2);
+        if (op.toLowerCase().equals("sec")) return 1.0/Math.cos(num2);
+        if (op.toLowerCase().equals("csc")) return 1.0 /Math.sin(num2);
+
         return 0;
     }
 
